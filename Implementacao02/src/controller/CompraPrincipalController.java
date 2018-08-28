@@ -31,80 +31,66 @@ public class CompraPrincipalController {
         this.telaPrincipalCompra.btnFinalizarCompraListener(new btnFinalizarCompraListener());
         carregarProdutos();
         this.telaPrincipalCompra.btnComprasAnterioresListener(new btnComprasAnterioresListener());
-        this.telaPrincipalCompra.btnVoltar(new btnVoltarListener());
+        this.telaPrincipalCompra.btnVoltar(new btnVoltarListener());    
     }
     
-    class btnComprasAnterioresListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            ComprasAnteriores ();            
-        }
-        
-    }
-    
-    private void ComprasAnteriores(){
-        this.telaPrincipalCompra.setVisible(false);
-        CompraExibirController compraExibirController = new CompraExibirController();
-    }
+    //Métodos da classe Controlador
     private void carregarProdutos(){
         ProdutoDAO dao = new ProdutoDAO();
         this.telaPrincipalCompra.getListaProdutos(dao.consultarProduto());        
     }
     
+    //Evento do botão Compras Anteriores
+    class btnComprasAnterioresListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ComprasAnteriores ();            
+        }        
+    }    
+    private void ComprasAnteriores(){
+        this.telaPrincipalCompra.setVisible(false);
+        CompraExibirController compraExibirController = new CompraExibirController();
+    }
     
+    //Evento do Botão Adicionar Item da Compra
     class btnAddItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             addItem();
-        }
-        
-    }
-    
-    class btnFinalizarCompraListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            FinalizarCompra();
-        }
-        
-    }
-    
-    class btnVoltarListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            VoltarTela();
         }        
     }
-    
-       
-    public void VoltarTela(){
-        this.telaPrincipalCompra.setVisible(false);
-        Controller controlador = new Controller();
-    }
-    
     public void addItem(){
-        try{
-            int qtde = this.telaPrincipalCompra.addQtde(); 
+        try{            
             ItemCompra item = new ItemCompra();
             item.setIdProduto(this.telaPrincipalCompra.getProdutoSelecionado());
+            int qtde = this.telaPrincipalCompra.addQtde(); 
             item.setQuantidade(qtde);            
             ProdutoDAO dao = new ProdutoDAO();
             Produto produto = dao.visualizarProduto(item.getIdProduto());
             item.setValorProdutoDiaDaCompra(produto.getValor());
-            this.telaPrincipalCompra.setAreaItensCompra(produto.getDescricao());
+            String produtoFormatado = "##PRODUTO##: \nDescrição: "
+                    +produto.getDescricao()
+                    +"\nValor Unitário: R$"+produto.getValor()
+                    +"\nValor Total: R$"+produto.getValor()*item.getQuantidade()
+                    +"\nQuantidade: "
+                    +item.getQuantidade(); 
+            this.telaPrincipalCompra.setAreaItensCompra(produtoFormatado);
             this.compra.addItemLista(item);
             double valor = this.compra.calcValorTotal();
             this.telaPrincipalCompra.setRotuloValorTotal(String.valueOf(valor));
         }catch(java.lang.NumberFormatException e){
-            this.telaPrincipalCompra.enviarMensagem("Somente números podem ser preenchidos neste campo!");
-            
-        }
-        
+            this.telaPrincipalCompra.enviarMensagem("Somente números podem ser preenchidos neste campo!");            
+        }        
     }
     
-    public void FinalizarCompra(){        
+    //Evento do Botão Finalizar Compra
+    class btnFinalizarCompraListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            FinalizarCompra();
+        }        
+    }
+     public void FinalizarCompra(){        
         CompraDAO dao = new CompraDAO();
         dao.finalizarCompra(this.compra);
         int codigoCompra = dao.getCodigoCompra();
@@ -112,12 +98,24 @@ public class CompraPrincipalController {
         boolean finalizado = false;
         for(ItemCompra item : compra.getItens()){            
             item.setIdCompra(codigoCompra);
-            System.out.println("ID Produto: "+item.getIdProduto() + " ID Compra: "+item.getIdCompra()+ "Qtde: "+item.getQuantidade());
             finalizado = dao2.registrarItem(item);
         }
         if(finalizado){
             this.telaPrincipalCompra.enviarMensagem("Compra finalizada com sucesso!");
-        }
-        
+        }else{
+            this.telaPrincipalCompra.enviarMensagem("Não foi possível finalizar a compra!");
+        }    
+    }
+    
+    //Evento do Botão Voltar
+    class btnVoltarListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            VoltarTela();
+        }        
+    }
+    public void VoltarTela(){
+        this.telaPrincipalCompra.setVisible(false);
+        Controller controlador = new Controller();
     }
 }

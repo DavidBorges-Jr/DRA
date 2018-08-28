@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.Produto;
 import view.TelaAlterarProduto;
-import view.TelaPrincipalProduto;
 
 /**
  *
@@ -18,9 +17,10 @@ import view.TelaPrincipalProduto;
  */
 public class ProdutoAlterarController {
     private final TelaAlterarProduto telaAlterarProduto;
-    private ProdutoDAO dao;
-    private Produto produto;
+    private final ProdutoDAO dao;
+    private final Produto produto;
     
+    //Construtor
     public ProdutoAlterarController(Produto produtoAlterar){
         this.produto = produtoAlterar;
         this.telaAlterarProduto = new TelaAlterarProduto(produto);
@@ -30,25 +30,13 @@ public class ProdutoAlterarController {
         this.dao = new ProdutoDAO();
     }
     
+    //Evento do botão Alterar
     class btnAlterarListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
            AlterarProduto();
-        }
-        
+        }        
     }
-    
-    class btnVoltarListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            BotaoVoltar();
-            
-        }
-        
-    }
-    
     public void AlterarProduto(){
         if(this.dao.alterarProduto(this.telaAlterarProduto.getProduto())){
             this.telaAlterarProduto.exibirMensagem("Produto alterado com sucesso!");
@@ -59,6 +47,14 @@ public class ProdutoAlterarController {
         };
     }
     
+    //Evento do botão Voltar
+    class btnVoltarListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            BotaoVoltar();
+            
+        }        
+    }
     public void BotaoVoltar(){
         this.telaAlterarProduto.setVisible(false);
          ProdutoPrincipalController controle = new ProdutoPrincipalController();

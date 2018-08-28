@@ -17,59 +17,58 @@ import view.TelaPrincipalProduto;
  */
 public final class ProdutoPrincipalController { 
     private final TelaPrincipalProduto telaPrincipalProduto;
-    private Produto produto;
     private final ProdutoDAO dao;
     
+    //construtor
     public ProdutoPrincipalController(){
         this.telaPrincipalProduto = new TelaPrincipalProduto();
         this.telaPrincipalProduto.setVisible(true);
-        this.produto = new Produto();
         this.dao = new ProdutoDAO();
         carregarProdutos();
         this.telaPrincipalProduto.btnAddProduto(new AddItemListener());
         this.telaPrincipalProduto.btnVisualizarProduto(new BtnVisualizarProduto() );
         this.telaPrincipalProduto.btnVoltar(new BtnVoltarListener());
-
-    }
-        
+    }        
+    
     public void carregarProdutos(){
         this.telaPrincipalProduto.getListaProdutos(dao.consultarProduto());        
     }
     
+    //Evento do botão Adicionar Item
     class AddItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             TelaAdicionar();            
         }    
     }
-    
-     class BtnVisualizarProduto implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            TelaVisualizarProduto();
-        }
-        
-    }
-     
-     class BtnVoltarListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            VoltarTela();
-        }
-         
-     }
-        
     public void TelaAdicionar(){
         this.telaPrincipalProduto.setVisible(false);
         ProdutoAdicionarController produtoAddController = new ProdutoAdicionarController(); 
     }
-       
+    
+    //Evento do Botão Visualizar Produto
+    class BtnVisualizarProduto implements ActionListener{
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           TelaVisualizarProduto();
+       }
+    }
+
+    //Evento do Botão Voltar
+    class BtnVoltarListener implements ActionListener{
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           VoltarTela();
+       }
+    }
     public void VoltarTela(){
          this.telaPrincipalProduto.setVisible(false);
          Controller controlador = new Controller();
-     }
+    }
+        
+    
+       
+    
    
     
     public void TelaVisualizarProduto(){

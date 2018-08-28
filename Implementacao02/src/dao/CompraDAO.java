@@ -27,38 +27,40 @@ public class CompraDAO {
     private Connection connection;
     private int codigoCompra;
     
-    public boolean finalizarCompra(Compra compra){
-        
+    /*
+    insere um regsitro na classe compra, retornando o id de compra e salvando-o
+    em codigoCompra, com isso, esse código vai ser usado para inserir o registro
+    dos itens dessa compra na tabela itemcompra    
+    */    
+    public boolean finalizarCompra(Compra compra){        
         try {
             connection = FabricaConexao.getConnection();
             String[] comid = {"comid"};
-            String sql = "INSERT INTO compra (comdata) VALUES (sysdate())";
+            String sql = "INSERT INTO compra (comdata) "
+                        + "VALUES (sysdate())";
             PreparedStatement stmt;
             stmt = connection.prepareStatement(sql, comid);
             stmt.execute();
             ResultSet resultados = stmt.getGeneratedKeys();
             while(resultados.next()){
                 this.codigoCompra = resultados.getInt(1);
-            }
-            
+            }            
         } catch (SQLException ex) {
             Logger.getLogger(CompraDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        return false;
-        
-    }
-    
+        }       
+        return false;        
+    }    
     public int getCodigoCompra(){
         return this.codigoCompra;
     }    
        
+    //retorna as compras registradas no sistema
     public List<Compra> listarCompras(){
         List<Compra> compras = new ArrayList<>();
         try {
             connection = FabricaConexao.getConnection();            
-            String sql = "select comid, comdata " +
-                    "from compra";
+            String sql = "SELECT comid, comdata " +
+                         "FROM compra";
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultados = stmt.executeQuery();
             while(resultados.next()){
@@ -72,18 +74,17 @@ public class CompraDAO {
         } catch (SQLException ex) {
             Logger.getLogger(CompraDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return compras;
-        
+        return compras;        
     }
     
-    
+    //retorna os itens de uma compra associados ao parâmetro idCompra 
     public List<ItemCompra> consultarItensCompra(int idCompra){
         List<ItemCompra> itens = new ArrayList<>();
         try {
             connection = FabricaConexao.getConnection();
-            String sql = "SELECT itemproid, itemqtde, itemvalordiacompra " +
-                    "FROM itemcompra "
-                    + "WHERE itemcomid = ?";
+            String sql = "SELECT itemproid, itemqtde, itemvalordiacompra " 
+                            +"FROM itemcompra "
+                            + "WHERE itemcomid = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, idCompra);
             ResultSet resultados = stmt.executeQuery();

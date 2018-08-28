@@ -13,8 +13,7 @@ public class DataUtil {
      
     public static String ConverterDataEmTexto(Calendar dataCalendar){
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-        String dataString = formatador.format(dataCalendar.getTime());
-        
+        String dataString = formatador.format(dataCalendar.getTime());        
         return dataString;
     }
     
@@ -25,8 +24,7 @@ public class DataUtil {
             c.setTime(format.parse(dataStr));
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());
-        }
-        
+        }        
         return c;
     }
     

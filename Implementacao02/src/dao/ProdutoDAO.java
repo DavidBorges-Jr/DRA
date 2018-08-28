@@ -23,18 +23,18 @@ import model.Produto;
 public class ProdutoDAO {
     private Connection connection;
     
-    public ProdutoDAO(){
-        
+    public ProdutoDAO(){        
     }
     
     public boolean addProduto(Produto produto){
         connection = FabricaConexao.getConnection();
-        String sql = "insert into produto(prodescricao, provalor, proqtde) values (?, ?, ?)";
+        String sql = "INSERT INTO produto(prodescricao, provalor, proqtde) "
+                + "VALUES (?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, produto.getDescricao());
-            stmt.setInt(2, produto.getQuantidade());
-            stmt.setDouble(3, produto.getValor()); 
+            stmt.setString(1, produto.getDescricao());            
+            stmt.setDouble(2, produto.getValor()); 
+            stmt.setInt(3, produto.getQuantidade());
             stmt.execute();
             connection.close();
             return true;
@@ -46,16 +46,15 @@ public class ProdutoDAO {
     
     public boolean alterarProduto(Produto produto){
         connection = FabricaConexao.getConnection();
-        String sql = "update produto "
-                + " set prodescricao = ?, provalor = ?, proqtde = ? "
-                + "where proid = ?";
+        String sql = "UPDATE produto "
+                + "SET prodescricao = ?, provalor = ?, proqtde = ? "
+                + "WHERE proid = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, produto.getDescricao());
-            stmt.setInt(2, produto.getQuantidade());
-            stmt.setDouble(3, produto.getValor());   
+            stmt.setString(1, produto.getDescricao());            
+            stmt.setDouble(2, produto.getValor());   
+            stmt.setInt(3, produto.getQuantidade());
             stmt.setInt(4, produto.getIdProduto());
-            System.out.println("Consulta: "+stmt);
             stmt.execute();
             connection.close();
             return true;
@@ -68,7 +67,7 @@ public class ProdutoDAO {
     public List<Produto> consultarProduto(){
         List<Produto> lista = new ArrayList<>(); 
         connection = FabricaConexao.getConnection();
-        String sql  = "select proid, prodescricao, provalor, proqtde from produto";
+        String sql  = "SELECT proid, prodescricao, provalor, proqtde FROM produto";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
@@ -89,7 +88,7 @@ public class ProdutoDAO {
     
     public boolean delProduto(int id){        
         connection = FabricaConexao.getConnection();
-        String sql = "delete from produto where proid = ?";
+        String sql = "DELETE from produto where proid = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -105,9 +104,9 @@ public class ProdutoDAO {
     public Produto visualizarProduto(int codigo){
         Produto produto = new Produto();
         connection = FabricaConexao.getConnection();
-        String sql = "select proid, prodescricao, provalor, proqtde "
-                + "from produto "
-                + "where proid = ?";
+        String sql = "SELECT proid, prodescricao, provalor, proqtde "
+                + "FROM produto "
+                + "WHERE proid = ?";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, codigo);

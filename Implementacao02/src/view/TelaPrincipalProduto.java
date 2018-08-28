@@ -6,7 +6,6 @@
 package view;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import model.Produto;

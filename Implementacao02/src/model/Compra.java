@@ -21,31 +21,19 @@ public class Compra {
     public Compra(){
         itens = new ArrayList<>();
     }
-
-    /**
-     * @return the idCompra
-     */
+    
     public int getIdCompra() {
         return idCompra;
     }
-
-    /**
-     * @param idCompra the idCompra to set
-     */
+    
     public void setIdCompra(int idCompra) {
         this.idCompra = idCompra;
     }
-
-    /**
-     * @return the itens
-     */
+    
     public List<ItemCompra> getItens() {
         return itens;
     }
-
-    /**
-     * @param itens the itens to set
-     */
+    
     public void setItens(List<ItemCompra> itens) {
         this.itens = itens;
     }
@@ -63,10 +51,7 @@ public class Compra {
         this.itens.add(item);        
         
     }
-
-    /**
-     * @return the dataCompra
-     */
+    
     public Calendar getDataCompra() {
         return dataCompra;
     }

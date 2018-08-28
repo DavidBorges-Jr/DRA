@@ -29,6 +29,7 @@ public class TelaAdicionarProduto extends javax.swing.JFrame {
     public void btnVoltar(ActionListener listener){
         btnVoltar.addActionListener(listener);
     }
+    
     public Produto getProduto(){
         Produto produto = new Produto();
         String descricao = campoDescricaoProduto.getText();
@@ -51,7 +52,6 @@ public class TelaAdicionarProduto extends javax.swing.JFrame {
         if("".equals(campoQtdeProduto.getText())){
             camposPreenchidos = false;
         }
-        System.out.println(camposPreenchidos);
         return camposPreenchidos;
     }
     

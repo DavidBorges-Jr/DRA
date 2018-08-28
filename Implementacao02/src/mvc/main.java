@@ -6,7 +6,6 @@
 package mvc;
 
 import controller.Controller;
-import view.TelaInicial;
 
 /**
  *

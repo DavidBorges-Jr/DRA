@@ -20,10 +20,16 @@ import model.ItemCompra;
 public class ItemCompraDAO {
     private Connection connection;
     
+    //insere os itens de uma compra, ou seja, os produtos associados à ela
     public boolean registrarItem(ItemCompra item){
         try {
             connection = FabricaConexao.getConnection();
-            String sql = "INSERT INTO itemcompra (itemproid, itemcomid, itemqtde, itemvalordiacompra) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO itemcompra ("
+                    + "itemproid, "
+                    + "itemcomid, "
+                    + "itemqtde, "
+                    + "itemvalordiacompra) "
+                    + "VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);     
             stmt.setInt(1, item.getIdProduto());
             stmt.setInt(2, item.getIdCompra());            
@@ -36,7 +42,6 @@ public class ItemCompraDAO {
             Logger.getLogger(ItemCompraDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        
     }
     
 }

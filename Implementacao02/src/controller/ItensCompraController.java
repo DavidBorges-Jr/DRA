@@ -21,8 +21,8 @@ public class ItensCompraController {
     private final TelaVisualizarItemCompra telaVisualizarItemCompra;
     private final List<ItemCompra> itens;
     
+    //Construtor
     public ItensCompraController(List<ItemCompra> itens){
-        System.out.println("Tô aqui");
         this.telaVisualizarItemCompra = new TelaVisualizarItemCompra();
         this.itens = itens;        
         ProdutoDAO dao = new ProdutoDAO();           
@@ -33,22 +33,18 @@ public class ItensCompraController {
         }
         this.telaVisualizarItemCompra.setVisible(true);
         this.telaVisualizarItemCompra.btnVoltar(new BtnVoltarListener());
-        
-        
     }
     
-     class BtnVoltarListener implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            VoltarTela();
-        }
-         
-     }
-     
-     public void VoltarTela(){
-         this.telaVisualizarItemCompra.setVisible(false);         
-         CompraExibirController controlador = new CompraExibirController();
-     }
+    //Evento do Botão Voltar
+    class BtnVoltarListener implements ActionListener{
+       @Override
+       public void actionPerformed(ActionEvent e) {
+           VoltarTela();
+       }
+    }    
+    public void VoltarTela(){
+        this.telaVisualizarItemCompra.setVisible(false);         
+        CompraExibirController controlador = new CompraExibirController();
+    }
     
 }

@@ -7,16 +7,14 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.Compra;
 import view.TelaInicial;
-import view.TelaPrincipalCompra;
 
 /**
  *
  * @author davidborges
  */
 public class Controller {
-    private TelaInicial telaInicial;
+    private final TelaInicial telaInicial;
     
     public Controller(){
         this.telaInicial = new TelaInicial();

@@ -20,9 +20,9 @@ public class CompraAbstractModel extends AbstractTableModel{
     String[] colunas = {"Código da compra", "Data da compra"};
     
     public CompraAbstractModel(List<Compra> listaCompras ){
-        this.listaCompras = listaCompras;
-        
+        this.listaCompras = listaCompras;        
     }
+    
     @Override
     public int getRowCount() {
         return listaCompras.size();

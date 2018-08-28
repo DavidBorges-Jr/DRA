@@ -17,6 +17,7 @@ public final class TelaVisualizarProduto extends javax.swing.JFrame {
     private Produto produto ;
     /**
      * Creates new form telaVisualizarProduto
+     * @param produto
      */
     public TelaVisualizarProduto(Produto produto) {
         initComponents();
