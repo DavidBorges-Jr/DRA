@@ -56,16 +56,14 @@ public class ProdutoVisualizarController {
      
      public void VoltarTela(){
          this.telaVisualizarProduto.setVisible(false);
+         ProdutoPrincipalController controle = new ProdutoPrincipalController();
      }
           
      public void ExcluirProduto(){
          ProdutoDAO dao = new ProdutoDAO();
          if(dao.delProduto(this.produto.getIdProduto())){
-            this.telaVisualizarProduto.exibirMensagem("Produto excluído com sucesso!");
-            TelaPrincipalProduto telaPrincipalProduto = new TelaPrincipalProduto();
-            Produto produto = new Produto(); 
-            ProdutoPrincipalController controle = new ProdutoPrincipalController(telaPrincipalProduto, produto);
-            telaPrincipalProduto.setVisible(true);
+            this.telaVisualizarProduto.exibirMensagem("Produto excluído com sucesso!");            
+            ProdutoPrincipalController controle = new ProdutoPrincipalController();
          }else{
              this.telaVisualizarProduto.exibirMensagem("Não foi possível excluir o produto!");
          }

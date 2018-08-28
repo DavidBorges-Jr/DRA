@@ -33,6 +33,10 @@ public class TelaAlterarProduto extends javax.swing.JFrame {
         btnAlterar.addActionListener(listener);
     }
     
+    public void btnVoltarListener(ActionListener listener){
+        btnVoltar.addActionListener(listener);
+    }
+    
     private void setProduto(){        
         campoDescricaoProduto.setText(this.produto.getDescricao());
         campoValorProduto.setText(String.valueOf(this.produto.getValor()));

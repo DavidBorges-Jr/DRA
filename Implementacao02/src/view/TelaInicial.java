@@ -46,6 +46,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         btnModuloCompras.setText("Módulo - Compras");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Escolha um dos módulos abaixo para iniciar a aplicação:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -58,25 +59,26 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
+                        .addGap(118, 118, 118)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnModuloCompras)
                             .addComponent(btnModuloProduto))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(53, 53, 53)
+                .addGap(47, 47, 47)
                 .addComponent(btnModuloProduto)
-                .addGap(36, 36, 36)
+                .addGap(56, 56, 56)
                 .addComponent(btnModuloCompras)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

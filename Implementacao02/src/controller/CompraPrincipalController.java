@@ -23,13 +23,15 @@ public class CompraPrincipalController {
     private final TelaPrincipalCompra telaPrincipalCompra;
     private final Compra compra;
     
-    public CompraPrincipalController(TelaPrincipalCompra telaPrincipalCompra, Compra compra){
-        this.telaPrincipalCompra = telaPrincipalCompra;
-        this.compra = compra;   
+    public CompraPrincipalController(){
+        this.telaPrincipalCompra = new TelaPrincipalCompra();
+        this.telaPrincipalCompra.setVisible(true);
+        this.compra = new Compra();   
         this.telaPrincipalCompra.btnAddItemListener(new btnAddItemListener());
         this.telaPrincipalCompra.btnFinalizarCompraListener(new btnFinalizarCompraListener());
         carregarProdutos();
         this.telaPrincipalCompra.btnComprasAnterioresListener(new btnComprasAnterioresListener());
+        this.telaPrincipalCompra.btnVoltar(new btnVoltarListener());
     }
     
     class btnComprasAnterioresListener implements ActionListener{
@@ -42,6 +44,7 @@ public class CompraPrincipalController {
     }
     
     private void ComprasAnteriores(){
+        this.telaPrincipalCompra.setVisible(false);
         CompraExibirController compraExibirController = new CompraExibirController();
     }
     private void carregarProdutos(){
@@ -66,6 +69,19 @@ public class CompraPrincipalController {
             FinalizarCompra();
         }
         
+    }
+    
+    class btnVoltarListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            VoltarTela();
+        }        
+    }
+    
+       
+    public void VoltarTela(){
+        this.telaPrincipalCompra.setVisible(false);
+        Controller controlador = new Controller();
     }
     
     public void addItem(){

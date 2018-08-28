@@ -18,6 +18,7 @@ public class TelaVisualizarItemCompra extends javax.swing.JFrame {
      */
     public TelaVisualizarItemCompra() {
         initComponents();
+        areaItensCompra.setEnabled(false);
     }
     
     public void setItensCompra(String itemCompra){
@@ -81,6 +82,7 @@ public class TelaVisualizarItemCompra extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

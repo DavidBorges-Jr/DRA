@@ -28,6 +28,7 @@ public class CompraExibirController {
         this.telaExibirCompras.setVisible(true);
         carregarTabela();      
         this.telaExibirCompras.btnVisualizarItensListener(new btnVisualizarItensListener());
+        this.telaExibirCompras.btnVoltar(new BtnVoltarListener());
         
     }
     
@@ -36,6 +37,15 @@ public class CompraExibirController {
         CompraAbstractModel modelo = new CompraAbstractModel(itens);
         this.telaExibirCompras.SetTabelaCompras(modelo);
     }
+    
+    class BtnVoltarListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            VoltarTela();
+        }
+         
+     }
         
     class btnVisualizarItensListener implements ActionListener{
         @Override
@@ -50,6 +60,9 @@ public class CompraExibirController {
         ItensCompraController itensCompraController = new ItensCompraController(itens);        
     }
     
-    
+    public void VoltarTela(){
+        this.telaExibirCompras.setVisible(false);
+        CompraPrincipalController controlador = new CompraPrincipalController();
+    }
     
 }

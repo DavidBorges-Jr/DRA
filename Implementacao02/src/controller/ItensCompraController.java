@@ -22,6 +22,7 @@ public class ItensCompraController {
     private final List<ItemCompra> itens;
     
     public ItensCompraController(List<ItemCompra> itens){
+        System.out.println("Tô aqui");
         this.telaVisualizarItemCompra = new TelaVisualizarItemCompra();
         this.itens = itens;        
         ProdutoDAO dao = new ProdutoDAO();           
@@ -46,7 +47,8 @@ public class ItensCompraController {
      }
      
      public void VoltarTela(){
-         this.telaVisualizarItemCompra.setVisible(false);
+         this.telaVisualizarItemCompra.setVisible(false);         
+         CompraExibirController controlador = new CompraExibirController();
      }
     
 }

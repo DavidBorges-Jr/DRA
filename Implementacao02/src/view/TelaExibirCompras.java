@@ -30,6 +30,10 @@ public class TelaExibirCompras extends javax.swing.JFrame {
         btnVisualizarItens.addActionListener(listener);
     }
     
+    public void btnVoltar(ActionListener listener){
+        btnVoltar.addActionListener(listener);
+    }
+    
     public void SetTabelaCompras(CompraAbstractModel modelo){
         tabelaCompras.setModel(modelo);
     }
@@ -99,6 +103,7 @@ public class TelaExibirCompras extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabelaComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaComprasMouseClicked

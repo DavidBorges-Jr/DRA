@@ -20,13 +20,15 @@ public final class ProdutoPrincipalController {
     private Produto produto;
     private final ProdutoDAO dao;
     
-    public ProdutoPrincipalController(TelaPrincipalProduto telaVisualizarProduto, Produto produto){
-        this.telaPrincipalProduto = telaVisualizarProduto;
-        this.produto = produto;
+    public ProdutoPrincipalController(){
+        this.telaPrincipalProduto = new TelaPrincipalProduto();
+        this.telaPrincipalProduto.setVisible(true);
+        this.produto = new Produto();
         this.dao = new ProdutoDAO();
         carregarProdutos();
         this.telaPrincipalProduto.btnAddProduto(new AddItemListener());
         this.telaPrincipalProduto.btnVisualizarProduto(new BtnVisualizarProduto() );
+        this.telaPrincipalProduto.btnVoltar(new BtnVoltarListener());
 
     }
         
@@ -49,12 +51,25 @@ public final class ProdutoPrincipalController {
         }
         
     }
+     
+     class BtnVoltarListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            VoltarTela();
+        }
+         
+     }
         
     public void TelaAdicionar(){
-        ProdutoAdicionarController produtoAddController;
-        produtoAddController = new ProdutoAdicionarController(); 
+        this.telaPrincipalProduto.setVisible(false);
+        ProdutoAdicionarController produtoAddController = new ProdutoAdicionarController(); 
     }
-    
+       
+    public void VoltarTela(){
+         this.telaPrincipalProduto.setVisible(false);
+         Controller controlador = new Controller();
+     }
    
     
     public void TelaVisualizarProduto(){

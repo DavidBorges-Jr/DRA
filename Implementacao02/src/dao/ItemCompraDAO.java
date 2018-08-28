@@ -23,7 +23,7 @@ public class ItemCompraDAO {
     public boolean registrarItem(ItemCompra item){
         try {
             connection = FabricaConexao.getConnection();
-            String sql = "INSERT INTO itemcompra (itemproid, itemprocomid, itemqtde, itemvalordiacompra) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO itemcompra (itemproid, itemcomid, itemqtde, itemvalordiacompra) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(sql);     
             stmt.setInt(1, item.getIdProduto());
             stmt.setInt(2, item.getIdCompra());            

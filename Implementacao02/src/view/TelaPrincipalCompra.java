@@ -25,6 +25,8 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
     public TelaPrincipalCompra() {
         initComponents();
         setTabela();
+        btnAddItem.setEnabled(false);
+        btnFinalizarCompra.setEnabled(false);
     }
     
     private void setTabela(){        
@@ -41,7 +43,7 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
     }
 
     public int addQtde(){
-        String quantidade = JOptionPane.showInputDialog(null, "Quantos produtos deseja adicionar? ");
+        String quantidade = JOptionPane.showInputDialog(null, "Quantos produtos deseja adicionar? ");        
         return Integer.valueOf(quantidade);
     }
     
@@ -54,11 +56,9 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
     }
     
     public void setAreaItensCompra(String item){
-        areaItensCompra.append(item+"\n");
-        
+        areaItensCompra.append(item+"\n");        
     }
     
-       
     public void btnFinalizarCompraListener(ActionListener listener){
         btnFinalizarCompra.addActionListener(listener);
     }
@@ -74,6 +74,10 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
     
     public void btnComprasAnterioresListener(ActionListener listener){
         btnComprasAnteriores.addActionListener(listener);
+    }
+    
+    public void btnVoltar(ActionListener listener){
+        btnVoltar.addActionListener(listener);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,6 +99,7 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
         rotuloValorTotal = new javax.swing.JLabel();
         btnFinalizarCompra = new javax.swing.JButton();
         btnComprasAnteriores = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,25 +137,24 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
 
         btnComprasAnteriores.setText("Compras Anteriores");
 
+        btnVoltar.setText("Voltar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(btnAddItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rotuloValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnFinalizarCompra))
-                            .addComponent(btnComprasAnteriores, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rotuloValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFinalizarCompra))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,7 +162,12 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(btnVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnComprasAnteriores)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,11 +192,14 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
                             .addComponent(rotuloValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnFinalizarCompra))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnComprasAnteriores)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnComprasAnteriores)
+                            .addComponent(btnVoltar))))
                 .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabelaProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProdutoMouseClicked
@@ -195,6 +207,7 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
         String codigo = tabelaProduto.getValueAt(tabelaProduto.getSelectedRow(),0).toString();        
         this.codigoProdutoSelecionado = Integer.valueOf(codigo);
         btnAddItem.setEnabled(true);
+        btnFinalizarCompra.setEnabled(true);
     }//GEN-LAST:event_tabelaProdutoMouseClicked
 
     /**
@@ -237,6 +250,7 @@ public class TelaPrincipalCompra extends javax.swing.JFrame {
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnComprasAnteriores;
     private javax.swing.JButton btnFinalizarCompra;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -8,20 +8,18 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.Compra;
-import model.Produto;
 import view.TelaInicial;
 import view.TelaPrincipalCompra;
-import view.TelaPrincipalProduto;
 
 /**
  *
  * @author davidborges
  */
 public class Controller {
-    TelaInicial telaInicial = new TelaInicial();
+    private TelaInicial telaInicial;
     
-    public Controller(TelaInicial telaInicial){
-        this.telaInicial = telaInicial;
+    public Controller(){
+        this.telaInicial = new TelaInicial();
         this.telaInicial.setVisible(true);
         this.telaInicial.btnModuloProdutoListener(new btnModuloProdutoListener());
         this.telaInicial.btnModuloCompras(new btnModuloCompras());
@@ -46,16 +44,12 @@ public class Controller {
     }
     
     public void TelaPrincipalProduto(){
-        TelaPrincipalProduto telaPrincipalProduto = new TelaPrincipalProduto();
-        Produto produto = new Produto(); 
-        ProdutoPrincipalController controle = new ProdutoPrincipalController(telaPrincipalProduto, produto);
-        telaPrincipalProduto.setVisible(true);
+        this.telaInicial.setVisible(false);
+        ProdutoPrincipalController controle = new ProdutoPrincipalController();
     }
    
     public void TelaPrincipalCompra(){
-        TelaPrincipalCompra telaPrincipalCompra = new TelaPrincipalCompra();
-        Compra compra = new Compra();
-        CompraPrincipalController controle = new CompraPrincipalController(telaPrincipalCompra, compra);
-        telaPrincipalCompra.setVisible(true);
+        this.telaInicial.setVisible(false);
+        CompraPrincipalController controle = new CompraPrincipalController();
     }
 }

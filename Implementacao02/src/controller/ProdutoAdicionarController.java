@@ -24,8 +24,6 @@ public class ProdutoAdicionarController {
         this.telaAdicionarProduto = new TelaAdicionarProduto();
         this.produto = new Produto();
         this.dao = new ProdutoDAO();
-        this.telaAdicionarProduto = new TelaAdicionarProduto();        
-        this.telaAdicionarProduto = new TelaAdicionarProduto();
         this.telaAdicionarProduto.setVisible(true);
         this.telaAdicionarProduto.btnSalvarListener(new AddProdutoListener());
         this.telaAdicionarProduto.btnVoltar(new BtnVoltarListener());
@@ -49,6 +47,7 @@ public class ProdutoAdicionarController {
      
      public void VoltarTela(){
          this.telaAdicionarProduto.setVisible(false);
+         ProdutoPrincipalController controlador = new ProdutoPrincipalController();
      }
     
      public void TelaAdicionarProduto(){
@@ -57,6 +56,7 @@ public class ProdutoAdicionarController {
             if(dao.addProduto(novoProduto)){
                 this.telaAdicionarProduto.setMensagem("Produto adicionado com sucesso!");
                 this.telaAdicionarProduto.limparCampos();
+                ProdutoPrincipalController controlador = new ProdutoPrincipalController();                
             }else{
                 this.telaAdicionarProduto.setMensagem("Não foi possível adicionar produto!");
             }

@@ -44,10 +44,16 @@ public final class TelaPrincipalProduto extends javax.swing.JFrame {
     public void btnVisualizarProduto(ActionListener listener){
         btnVisualizarProduto.addActionListener(listener);
     }
+    
+    public void btnVoltar(ActionListener listener){
+        btnVoltar.addActionListener(listener);
+    }
       
     public int getCodigoProdutoSelectionado(){
         return this.codigoProdutoSelecionado;
     }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,6 +70,7 @@ public final class TelaPrincipalProduto extends javax.swing.JFrame {
         tabelaListaProdutos = new javax.swing.JTable();
         btnAddProduto = new javax.swing.JButton();
         btnVisualizarProduto = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -92,6 +99,8 @@ public final class TelaPrincipalProduto extends javax.swing.JFrame {
 
         btnVisualizarProduto.setText("Visualizar Detalhes");
 
+        btnVoltar.setText("Voltar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,10 +108,12 @@ public final class TelaPrincipalProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                        .addGap(57, 57, 57)
                         .addComponent(btnAddProduto)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnVisualizarProduto))
+                        .addGap(32, 32, 32)
+                        .addComponent(btnVisualizarProduto)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnVoltar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -125,7 +136,8 @@ public final class TelaPrincipalProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVisualizarProduto)
-                    .addComponent(btnAddProduto))
+                    .addComponent(btnAddProduto)
+                    .addComponent(btnVoltar))
                 .addContainerGap())
         );
 
@@ -179,6 +191,7 @@ public final class TelaPrincipalProduto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddProduto;
     private javax.swing.JButton btnVisualizarProduto;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

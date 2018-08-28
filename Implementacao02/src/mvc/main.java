@@ -14,9 +14,7 @@ import view.TelaInicial;
  */
 public class main {
     public static void main(String args[]){
-        TelaInicial telaInicial = new TelaInicial();
-        Controller controller = new Controller(telaInicial);
-        telaInicial.setVisible(true);
+        Controller controller = new Controller();
         
     }
     

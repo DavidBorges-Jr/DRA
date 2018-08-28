@@ -26,6 +26,7 @@ public class ProdutoAlterarController {
         this.telaAlterarProduto = new TelaAlterarProduto(produto);
         this.telaAlterarProduto.setVisible(true);        
         this.telaAlterarProduto.btnAlterarListener(new btnAlterarListener());
+        this.telaAlterarProduto.btnVoltarListener(new btnVoltarListener());
         this.dao = new ProdutoDAO();
     }
     
@@ -51,11 +52,8 @@ public class ProdutoAlterarController {
     public void AlterarProduto(){
         if(this.dao.alterarProduto(this.telaAlterarProduto.getProduto())){
             this.telaAlterarProduto.exibirMensagem("Produto alterado com sucesso!");
-            this.telaAlterarProduto.setVisible(false);
-            TelaPrincipalProduto telaPrincipalProduto = new TelaPrincipalProduto();
-            Produto produto = new Produto(); 
-            ProdutoPrincipalController controle = new ProdutoPrincipalController(telaPrincipalProduto, produto);
-            telaPrincipalProduto.setVisible(true);
+            this.telaAlterarProduto.setVisible(false);            
+            ProdutoPrincipalController controle = new ProdutoPrincipalController();
         }else{
             this.telaAlterarProduto.exibirMensagem("Não foi possível alteradar o produto!");
         };
@@ -63,6 +61,7 @@ public class ProdutoAlterarController {
     
     public void BotaoVoltar(){
         this.telaAlterarProduto.setVisible(false);
+         ProdutoPrincipalController controle = new ProdutoPrincipalController();
     }
     
 }

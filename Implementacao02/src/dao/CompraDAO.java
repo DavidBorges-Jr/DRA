@@ -83,7 +83,7 @@ public class CompraDAO {
             connection = FabricaConexao.getConnection();
             String sql = "SELECT itemproid, itemqtde, itemvalordiacompra " +
                     "FROM itemcompra "
-                    + "WHERE itemprocomid = ?";
+                    + "WHERE itemcomid = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, idCompra);
             ResultSet resultados = stmt.executeQuery();
