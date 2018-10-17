@@ -1,6 +1,9 @@
 package daogenerico;
 
+import dra03exercicio.Curso;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class GenericDAO <T> {
     
@@ -54,5 +57,7 @@ public class GenericDAO <T> {
         System.out.println("bucando por id.." + obj.getName());
         return entityManager.find(obj, id);
     }
+    
+    
     
 }
